@@ -57,12 +57,16 @@ public class SecurityConfig {
     }
 
     // 認証マネージャーの設定（ログイン処理の裏側で使われます）
+// 認証マネージャーの設定（ログイン処理の裏側で使われます）
     @Bean
     public AuthenticationManager authenticationManager(HttpSecurity http) throws Exception {
-        return http.getSharedObject(AuthenticationManagerBuilder.class)
+        AuthenticationManagerBuilder authenticationManagerBuilder = 
+            http.getSharedObject(AuthenticationManagerBuilder.class);
+        
+        authenticationManagerBuilder
             .userDetailsService(userDetailsService)
-            .passwordEncoder(passwordEncoder())
-            .and()
-            .build();
+            .passwordEncoder(passwordEncoder());
+            
+        return authenticationManagerBuilder.build();
     }
 }

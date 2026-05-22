@@ -1,6 +1,6 @@
 package com.example.service;
 
-import com.example.model.User;
+import com.example.model.User; // ここをUserに変更
 import com.example.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -25,7 +25,7 @@ public class UserService {
         String encodedPassword = passwordEncoder.encode(password);
 
         // 3. 暗号化したパスワードと権限（ROLE）を設定して保存
-        User user = new User(username, encodedPassword, role);
+        User user = new User(username, encodedPassword, role); // ここをUserに変更
         userRepository.save(user);
     }
 }
